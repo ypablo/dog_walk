@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    justify-content: center;
+    background-color: darkseagreen;
+    
+     
+}
+
+.main img {
+    opacity: .7;
+    margin: 5px;
+    padding: 10px;
+    transform: scale(.9);
+    
+}
+
