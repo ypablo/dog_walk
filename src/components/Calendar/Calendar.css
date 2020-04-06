@@ -14,30 +14,32 @@
 }
 
 .day {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 75px;
     width: 75px;
     background-color: #fff;
-    border: 3px solid black;
+    border: 5px solid black;
     border-radius: 25%;
     font-size: 50px;
     margin: 5px;
     text-align: center;
-    padding: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: lightgreen;
 }
 
 .week-day {
-    display: inline-block;
-    height: 75px;
+    height: 65px;
     width: 75px;
-    border: 3px solid black;
+    border: 5px solid black;
     border-radius: 25%;
     font-size: 33px;
     margin: 5px;
     text-align: center;
-    padding: 10px;
+    padding: 0 10px;
     background-color: lightblue;
+    
 }
 
