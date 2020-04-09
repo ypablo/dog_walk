@@ -49,6 +49,8 @@
 }
 .calendar-navi {
     display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: x-large;
     border: 4px solid black;
     border-radius: 25px;
@@ -65,4 +67,9 @@
     border: 1px solid black;
     margin: 5px;
     padding: 5px;
+}
+
+.purplemedium {
+    background-color: #9370DB;
+    color: #fff;
 }

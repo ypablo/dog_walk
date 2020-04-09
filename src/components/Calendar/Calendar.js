@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import "./Calendar.css"
 import moment from 'moment'
+import right from "../../images/right.png"
+import left from "../../images/left.png"
+
 
 export default class Calendar extends Component {
     constructor(props) {
@@ -9,6 +12,8 @@ export default class Calendar extends Component {
             today: moment(),
             dateObject: moment(),
             allmonths: moment.months(),
+            mediumpurple: null,
+            selectedDay: 5,
             showMonthPopup: false,
             showYearPopup: false
         }
@@ -16,6 +21,16 @@ export default class Calendar extends Component {
 
     test = () => {
         alert("Test")
+    }
+
+
+    changeColor = (e, d) => {
+        let newBgColor = this.state.mediumpurple ? null : "#9370DB"
+        this.setState({ mediumpurple: newBgColor, selectedDay: d },
+            () => {
+                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.mediumpurple)
+            }
+        )
     }
 
     firstDayOfMonth = () => {
@@ -42,10 +57,10 @@ export default class Calendar extends Component {
 
     MonthList = (props) => {
         let months = [];
-        props.data.map(data => {
+        props.data.map((data, i) => {
             return (
                 months.push(
-                    <td>
+                    <td key={i}>
                         <span>{data}</span>
                     </td>
                 ))
@@ -80,21 +95,28 @@ export default class Calendar extends Component {
         let blanks = [];
         for (let i = 0; i < this.firstDayOfMonth(); i++) {
             blanks.push(
-                <td className="empty">{""}</td>
+                <td key={i * 51} className="empty">{""}</td>
             )
         }
 
         //Start filling with the first date of the month 
         let daysInMonth = [];
+        //let done = this.state.mediumpurple ? "purplemedium" : null;
         for (let d = 1; d <= this.daysInMonth(); d++) {
             let currentDay = d == this.currentDay() ? "today" : ""
             daysInMonth.push(
-                <td key={d} className={`day ${currentDay}`} onClick={this.test}>
+                <td
+                    key={d}
+                    className={`day ${currentDay}`}
+                    onClick={(e) => this.changeColor(e, d)}
+                    style={{ backgroundColor: this.state.mediumpurple }}
+                    id={d}
+                >
                     {d}
                 </td>
             );
         }
-
+        console.log(this.state.selectedDay)
         //Combine blank cells and day cells together. 
         var totalSlots = [...blanks, ...daysInMonth]
         //rows hold  </td> while going to a new row
@@ -123,10 +145,12 @@ export default class Calendar extends Component {
         return (
             <div className="calendar">
                 <h1>Calendar</h1>
-
-                <div className="calendar-navi">
-                    <div> > </div>
-                    {this.month()}
+                <div className="nav">
+                    <img src={left} alt="" />
+                    <div className="calendar-navi">
+                        {this.month()}
+                    </div>
+                    <img src={right} alt="" />
                 </div>
                 <table className="calendar-day">
                     <thead>
