@@ -13,22 +13,21 @@ export default class Calendar extends Component {
             dateObject: moment(),
             allmonths: moment.months(),
             mediumpurple: null,
-            selectedDay: 5,
-            showMonthPopup: false,
-            showYearPopup: false
+            selectedDay: 0,
+            bgColor: false,
+            selectedDays: []
         }
     }
 
-    test = () => {
-        alert("Test")
-    }
-
-
     changeColor = (e, d) => {
-        let newBgColor = this.state.mediumpurple ? null : "#9370DB"
-        this.setState({ mediumpurple: newBgColor, selectedDay: d },
+        e.preventDefault();
+
+        const newItem = { item: this.state.selectedDay }
+        const updatedItems = [...this.state.selectedDays, newItem]
+
+        this.setState({ selectedDay: d, bgColor: !this.state.bgColor, selectedDays: updatedItems },
             () => {
-                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.mediumpurple)
+                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays)
             }
         )
     }
@@ -73,6 +72,7 @@ export default class Calendar extends Component {
     onPrev = () => { };
     onNext = () => { };
 
+
     render() {
         //moment npm date/time package
         moment.updateLocale('en', {
@@ -100,23 +100,29 @@ export default class Calendar extends Component {
         }
 
         //Start filling with the first date of the month 
-        let daysInMonth = [];
-        //let done = this.state.mediumpurple ? "purplemedium" : null;
+        let daysInMonth = []
+
         for (let d = 1; d <= this.daysInMonth(); d++) {
             let currentDay = d == this.currentDay() ? "today" : ""
+            let classNames = ["day"]
+            if (currentDay === "today") {
+                classNames.push("today")
+            }
+            if (d === this.state.selectedDay) {
+                classNames.push("active")
+            }
             daysInMonth.push(
                 <td
                     key={d}
-                    className={`day ${currentDay}`}
+                    className={classNames.join(" ")}
                     onClick={(e) => this.changeColor(e, d)}
-                    style={{ backgroundColor: this.state.mediumpurple }}
-                    id={d}
-                >
+                    id={d}>
                     {d}
                 </td>
             );
         }
-        console.log(this.state.selectedDay)
+
+
         //Combine blank cells and day cells together. 
         var totalSlots = [...blanks, ...daysInMonth]
         //rows hold  </td> while going to a new row
@@ -162,6 +168,7 @@ export default class Calendar extends Component {
                         {daysinmonth}
                     </tbody>
                 </table>
+                <div className="calendar-navi">Reset</div>
             </div>
         )
     }

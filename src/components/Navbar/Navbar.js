@@ -11,8 +11,8 @@ export default function Navbar() {
                 <Link to="/" style={{ textDecoration: "none", marginRight: "15px" }}>
                     <li>Home</li>
                 </Link>
-                <Link to="/about" style={{ textDecoration: "none" }}>
-                    <li>About</li>
+                <Link to="/contact" style={{ textDecoration: "none" }}>
+                    <li>Contact</li>
                 </Link>
             </ul>
         </nav>
