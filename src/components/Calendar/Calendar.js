@@ -24,9 +24,10 @@ export default class Calendar extends Component {
         e.preventDefault();
         const updatedItems = [...this.state.selectedDays, d]
 
-        this.setState({ selectedDay: d, bgColor: !this.state.bgColor, selectedDays: updatedItems, clicked: !this.state.clicked },
+
+        this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: !this.state.bgColor },
             () => {
-                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays, this.state.clicked)
+                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays)
             }
         )
     }
@@ -35,15 +36,22 @@ export default class Calendar extends Component {
         const itemsArray = this.state.selectedDays
         const index = itemsArray.indexOf(d)
         itemsArray.splice(index, 1)
-        this.setState({ itemsArray: itemsArray })
+        //if (index > -1) {
+        //    itemsArray.splice(index, 1);
+        // }
+        return itemsArray
+        //this.setState({ selectedDays: itemsArray })
+
     }
 
     removeDuplicates = () => {
         const array = this.state.selectedDays
         const uniqueSet = new Set(array)
         const backToArray = [...uniqueSet]
-        this.setState({ selectedDays: backToArray })
+        return backToArray
+        //this.setState({ selectedDays: backToArray })
     }
+
     checkUniqueArray = (myArray) => {
         return myArray.length === new Set(myArray).size
     }
@@ -127,23 +135,45 @@ export default class Calendar extends Component {
                 classNames.push("today")
             }
 
+
             if (this.state.selectedDays.includes(d)) {
-                if (this.checkUniqueArray(this.state.selectedDays)) {
-                    console.log("Unique")
+                /*if (this.checkUniqueArray(this.state.selectedDays)) {
+                    console.log("Unique number")
+                    classNames.push("active")
                 } else {
-                    console.log("Not unique")
-                    classNames.filter(word => word.length > 5)
-                    //this.removeDuplicates()
+                    console.log("Not unique number")
+                    //this.deleteItem(d)
+                    if (classNames.includes("active")) {
+                        classNames.pop()
+    
+                    }
+                    //classNames.filter(word => word.length > 5)
+    
+                }*/
+
+                if (classNames.length === 1) {
+
+                    classNames.push("active")
+                    console.log("pop")
+
+                } else if (classNames.length === 2) {
+                    classNames.pop()
+                    console.log("push")
+
                 }
-                //classNames.push("active")
-                classNames.push("active")
-                //this.deleteItem(d)
-                //console.log(`Is it unique: ${this.checkUniqueArray(this.state.selectedDays)}`)
-            } else {
-                //classNames.pop("active")
-                //classNames.filter(word => word.length < 5)
+
             }
-            //console.log(this.state.selectedDays)
+
+            //classNames.push("active")
+            //classNames.push("active")
+            //this.deleteItem(d)
+            //console.log(`Is it unique: ${this.checkUniqueArray(this.state.selectedDays)}`)
+
+            //} else {
+            //classNames.pop("active")
+            //classNames.filter(word => word.length < 5)
+
+            //console.log(classNames)
             daysInMonth.push(
                 <td
                     key={d}
