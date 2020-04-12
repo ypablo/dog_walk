@@ -15,22 +15,39 @@ export default class Calendar extends Component {
             mediumpurple: null,
             selectedDay: 0,
             bgColor: false,
-            selectedDays: []
+            selectedDays: [],
+            clicked: false
         }
     }
 
     changeColor = (e, d) => {
         e.preventDefault();
+        const updatedItems = [...this.state.selectedDays, d]
 
-        const newItem = { item: this.state.selectedDay }
-        const updatedItems = [...this.state.selectedDays, newItem]
-
-        this.setState({ selectedDay: d, bgColor: !this.state.bgColor, selectedDays: updatedItems },
+        this.setState({ selectedDay: d, bgColor: !this.state.bgColor, selectedDays: updatedItems, clicked: !this.state.clicked },
             () => {
-                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays)
+                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays, this.state.clicked)
             }
         )
     }
+
+    deleteItem = (d) => {
+        const itemsArray = this.state.selectedDays
+        const index = itemsArray.indexOf(d)
+        itemsArray.splice(index, 1)
+        this.setState({ itemsArray: itemsArray })
+    }
+
+    removeDuplicates = () => {
+        const array = this.state.selectedDays
+        const uniqueSet = new Set(array)
+        const backToArray = [...uniqueSet]
+        this.setState({ selectedDays: backToArray })
+    }
+    checkUniqueArray = (myArray) => {
+        return myArray.length === new Set(myArray).size
+    }
+
 
     firstDayOfMonth = () => {
         let dateObject = this.state.dateObject
@@ -73,6 +90,7 @@ export default class Calendar extends Component {
     onNext = () => { };
 
 
+
     render() {
         //moment npm date/time package
         moment.updateLocale('en', {
@@ -108,14 +126,31 @@ export default class Calendar extends Component {
             if (currentDay === "today") {
                 classNames.push("today")
             }
-            if (d === this.state.selectedDay) {
+
+            if (this.state.selectedDays.includes(d)) {
+                if (this.checkUniqueArray(this.state.selectedDays)) {
+                    console.log("Unique")
+                } else {
+                    console.log("Not unique")
+                    classNames.filter(word => word.length > 5)
+                    //this.removeDuplicates()
+                }
+                //classNames.push("active")
                 classNames.push("active")
+                //this.deleteItem(d)
+                //console.log(`Is it unique: ${this.checkUniqueArray(this.state.selectedDays)}`)
+            } else {
+                //classNames.pop("active")
+                //classNames.filter(word => word.length < 5)
             }
+            //console.log(this.state.selectedDays)
             daysInMonth.push(
                 <td
                     key={d}
                     className={classNames.join(" ")}
+                    //className={this.state.selectedDays.includes(d) ? "day active" : "day"}
                     onClick={(e) => this.changeColor(e, d)}
+
                     id={d}>
                     {d}
                 </td>
@@ -168,7 +203,7 @@ export default class Calendar extends Component {
                         {daysinmonth}
                     </tbody>
                 </table>
-                <div className="calendar-navi">Reset</div>
+                <div className="calendar-navi reset">Reset</div>
             </div>
         )
     }

@@ -25,7 +25,7 @@
 }
 
 .day:hover {
-    background-color:#DDA0DD;
+    background-color:#D8BFD8;
     cursor: pointer;
 }
 .empty:hover {
@@ -60,8 +60,19 @@
     height: 65px;
     padding: 5px;;
 }
+.reset {
+    
+    cursor: pointer;
+    margin: 15px;
+}
+.reset:hover {
+    background-color: lightgray;
+}
 
 .active {
     background-color: #9370DB;
     color: #fff;
+}
+.active:hover {
+    background-color: #9370DB;
 }
