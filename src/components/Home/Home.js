@@ -8,16 +8,21 @@ import dog03 from "../../images/dog03.jpg"
 import lorem from "../../images/lorem.jpg"
 import Calendar from "../Calendar/Calendar"
 
+
 export default class MyCarousel extends Component {
-    constructor() {
-        super()
-        this.state = { value: 0 };
+    constructor(props) {
+        super(props)
+        this.state = {
+            value: 0,
+            selected: []
+        };
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(value) {
         this.setState({ value });
     }
+
 
     render() {
         return (

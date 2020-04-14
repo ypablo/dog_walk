@@ -16,20 +16,41 @@ export default class Calendar extends Component {
             selectedDay: 0,
             bgColor: false,
             selectedDays: [],
-            clicked: false
+            clicked: true,
+
         }
     }
 
     changeColor = (e, d) => {
         e.preventDefault();
         const updatedItems = [...this.state.selectedDays, d]
+        const updatedClicked = [...updatedItems,]
 
-
-        this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: !this.state.bgColor },
+        this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: !this.state.bgColor, clicked: this.state.clicked },
             () => {
                 console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays)
             }
         )
+    }
+
+    handleClick(e) {
+        let cName = e.currentTarget.className;
+        let classNames = []
+        switch (cName) {
+            case 'day today':
+                console.log('It is a light purple box');
+                break;
+            case 'day':
+                console.log('It is a white box');
+                classNames.push("active")
+                break;
+            case 'active':
+                console.log('It is a purple box');
+                break;
+            default:
+                console.log('I don\'t know the exact color');
+                break;
+        }
     }
 
     deleteItem = (d) => {
@@ -97,9 +118,13 @@ export default class Calendar extends Component {
     onPrev = () => { };
     onNext = () => { };
 
-
+    handleClick = (e) => {
+        this.setState({ activeKey: e });
+        console.log('clicked' + e);
+    }
 
     render() {
+
         //moment npm date/time package
         moment.updateLocale('en', {
             week: {
@@ -135,7 +160,7 @@ export default class Calendar extends Component {
                 classNames.push("today")
             }
 
-
+            /*
             if (this.state.selectedDays.includes(d)) {
                 /*if (this.checkUniqueArray(this.state.selectedDays)) {
                     console.log("Unique number")
@@ -149,7 +174,7 @@ export default class Calendar extends Component {
                     }
                     //classNames.filter(word => word.length > 5)
     
-                }*/
+                }
 
                 if (classNames.length === 1) {
 
@@ -162,7 +187,7 @@ export default class Calendar extends Component {
 
                 }
 
-            }
+            }*/
 
             //classNames.push("active")
             //classNames.push("active")
@@ -174,14 +199,23 @@ export default class Calendar extends Component {
             //classNames.filter(word => word.length < 5)
 
             //console.log(classNames)
+
+
+            if (this.state.clicked && this.state.selectedDay === d) {
+                classNames.push('active');
+            }
+
+            //console.log(beasts.indexOf('bison'));
+
             daysInMonth.push(
                 <td
                     key={d}
                     className={classNames.join(" ")}
+                    //className={this.state.activeKey === d ? "day active" : "day"}
                     //className={this.state.selectedDays.includes(d) ? "day active" : "day"}
                     onClick={(e) => this.changeColor(e, d)}
-
                     id={d}>
+                    {/*this.state.bgColor ? d : d*/}
                     {d}
                 </td>
             );
