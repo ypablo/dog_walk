@@ -122,13 +122,13 @@ export default class Calendar extends Component {
     months = moment.months()
     onPrev = () => {
         this.setState({
-            dateObject: this.state.dateObject.subtract(1, "month")
+            dateObject: this.state.dateObject.subtract(1, "month"), selectedDay: null
         });
     };
 
     onNext = () => {
         this.setState({
-            dateObject: this.state.dateObject.add(1, "month")
+            dateObject: this.state.dateObject.add(1, "month"), selectedDay: null
         });
     };
 
