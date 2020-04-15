@@ -12,19 +12,19 @@ export default class Calendar extends Component {
             today: moment(),
             dateObject: moment(),
             allmonths: moment.months(),
-            mediumpurple: null,
-            selectedDay: 0,
+            selectedDay: null,
             bgColor: false,
             selectedDays: [],
             clicked: true,
-
+            showYearTable: false,
         }
+        this.baseState = this.state
     }
 
     changeColor = (e, d) => {
         e.preventDefault();
         const updatedItems = [...this.state.selectedDays, d]
-        const updatedClicked = [...updatedItems,]
+        //const updatedClicked = [...updatedItems,]
 
         this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: !this.state.bgColor, clicked: this.state.clicked },
             () => {
@@ -121,31 +121,21 @@ export default class Calendar extends Component {
     weekdaysShort = moment.weekdaysShort()
     months = moment.months()
     onPrev = () => {
-        let curr = "";
-        if (this.state.showYeahTable === true) {
-            curr = "year";
-        } else {
-            curr = "month";
-        }
         this.setState({
-            dateObject: this.state.dateObject.subtract(1, curr)
+            dateObject: this.state.dateObject.subtract(1, "month")
         });
     };
 
     onNext = () => {
-        let curr = "";
-        if (this.state.showYeahTable === true) {
-            curr = "year";
-        } else {
-            curr = "month";
-        }
         this.setState({
-            dateObject: this.state.dateObject.add(1, curr)
+            dateObject: this.state.dateObject.add(1, "month")
         });
     };
 
-    reset = () => {
 
+    reset = () => {
+        let curr = moment().month()
+        this.setState({ dateObject: this.state.dateObject.month(curr, "month"), selectedDays: [] })
     }
 
 
@@ -184,7 +174,6 @@ export default class Calendar extends Component {
             if (currentDay === "today") {
                 classNames.push("today")
             }
-
             /*
             if (this.state.selectedDays.includes(d)) {
                 /*if (this.checkUniqueArray(this.state.selectedDays)) {
@@ -276,11 +265,11 @@ export default class Calendar extends Component {
             <div className="calendar">
                 <h1>Calendar</h1>
                 <div className="nav">
-                    <img src={left} alt="" onClick={e => { this.onPrev() }} className="prev-calendar" />
+                    <img src={left} alt="" onClick={(e) => { this.onPrev() }} className="prev-calendar" />
                     <div className="calendar-navi">
                         {`${this.month()} ${this.year()}`}
                     </div>
-                    <img src={right} alt="" onClick={e => { this.onNext() }} className="next-calendar" />
+                    <img src={right} alt="" onClick={(e) => { this.onNext() }} className="next-calendar" />
                 </div>
                 <table className="calendar-day">
                     <thead>
@@ -292,7 +281,7 @@ export default class Calendar extends Component {
                         {daysinmonth}
                     </tbody>
                 </table>
-                <div className="calendar-navi reset">Reset</div>
+                <div className="calendar-navi reset" onClick={this.reset}>Reset</div>
             </div>
         )
     }
