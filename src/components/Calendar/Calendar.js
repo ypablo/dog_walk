@@ -33,6 +33,8 @@ export default class Calendar extends Component {
         )
     }
 
+
+
     handleClick(e) {
         let cName = e.currentTarget.className;
         let classNames = []
@@ -78,6 +80,9 @@ export default class Calendar extends Component {
     }
 
 
+
+
+
     firstDayOfMonth = () => {
         let dateObject = this.state.dateObject
         let firstDay = moment(dateObject).startOf("month").format("d") //Day of week 0.. 1.. 2..
@@ -115,16 +120,36 @@ export default class Calendar extends Component {
     weekdays = moment.weekdays()
     weekdaysShort = moment.weekdaysShort()
     months = moment.months()
-    onPrev = () => { };
-    onNext = () => { };
+    onPrev = () => {
+        let curr = "";
+        if (this.state.showYeahTable === true) {
+            curr = "year";
+        } else {
+            curr = "month";
+        }
+        this.setState({
+            dateObject: this.state.dateObject.subtract(1, curr)
+        });
+    };
 
-    handleClick = (e) => {
-        this.setState({ activeKey: e });
-        console.log('clicked' + e);
+    onNext = () => {
+        let curr = "";
+        if (this.state.showYeahTable === true) {
+            curr = "year";
+        } else {
+            curr = "month";
+        }
+        this.setState({
+            dateObject: this.state.dateObject.add(1, curr)
+        });
+    };
+
+    reset = () => {
+
     }
 
-    render() {
 
+    render() {
         //moment npm date/time package
         moment.updateLocale('en', {
             week: {
@@ -251,11 +276,11 @@ export default class Calendar extends Component {
             <div className="calendar">
                 <h1>Calendar</h1>
                 <div className="nav">
-                    <img src={left} alt="" />
+                    <img src={left} alt="" onClick={e => { this.onPrev() }} className="prev-calendar" />
                     <div className="calendar-navi">
-                        {this.month()}
+                        {`${this.month()} ${this.year()}`}
                     </div>
-                    <img src={right} alt="" />
+                    <img src={right} alt="" onClick={e => { this.onNext() }} className="next-calendar" />
                 </div>
                 <table className="calendar-day">
                     <thead>
