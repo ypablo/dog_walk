@@ -2,3 +2,11 @@
     background-color: skyblue;
     height: 85vh;
 }
+
+.map-styles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+}
