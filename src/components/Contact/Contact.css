@@ -1,12 +1,49 @@
 .contact-page {
     background-color: skyblue;
-    height: 85vh;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    display: block;
+    
 }
-
-.map-styles {
+.wrapper-top {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 400px;
+    background-color: #8cbcb9;
+    position: absolute;
+    width: 100%;
+    top: 25px;
 }
+
+.contact-pics {
+    width: 600px;
+    height: 600px;
+    margin: 10px 0;
+}
+
+.contact-form {
+    width: 600px;
+    height: 600px;
+    
+    margin: 10px 0;
+    background-color: #8cbcb9;
+}
+/*
+.contact-address {
+    grid-area: address;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #000;
+    margin: 10px;
+}
+
+.contact-map {
+    grid-area: map;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #000;
+    margin: 10px;
+}*/
+
