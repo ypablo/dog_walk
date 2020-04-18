@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import "./Contact.css"
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react"
 import Justyna from "../../images/justyna.jpg"
-//import { SocialMediaIconsReact } from "social-media-icons-react"
 import { SocialIcon } from 'react-social-icons';
 
 const formValid = (formErrors) => {
@@ -61,50 +60,15 @@ export class Contact extends Component {
 
 
     render() {
-        /*const contactPage = {
-            display: 'grid',
-            gridTemplateColumns: "'10%' minmax(300px, 1fr))' 'minmax(300px, 1fr))' '10%'",
-            gridTemplateRows: "'1fr' '1fr'",
-            gridTemplateAreas: "'. pics form .' '. address map .'",
-            justifyItems: 'center',
-            alignItems: 'center',
-            columnGap: '15px',
-            backgroundColor: 'skyblue',
-            height: '100%',
-            margin: '0'
-        }
-        const contactPics = {
-            width: '100%',
-            height: '600px',
-            margin: '10px',
-            gridArea: 'pics'
-        }
-        const contactForm = {
-            width: '100%',
-            height: '600px',
-            margin: '10px',
-            border: '1px solid #000',
-            gridArea: 'form',
-            backgroundColor: '#FFBACD'
-        }
-        const contactAddress = {
-            width: '100%',
-            height: '600px',
-            margin: '10px',
-            border: '1px solid #000',
-            gridArea: 'address',
-            backgroundColor: '#4682B4'
-        }*/
+       
         const contactMapWrapper = {
-            width: '602px',
-            height: '602px',
+            width: '502px',
+            height: '402px',
             margin: '10px',
-            border: '1px solid #000',
-            gridArea: 'map'
         }
         const contactMap = {
-            width: '600px',
-            height: '600px'
+            width: '500px',
+            height: '400px'
         }
         const pic = {
             width: '100%',
@@ -113,13 +77,14 @@ export class Contact extends Component {
 
 
         return (
-            <div /*style={contactPage}*/ className="contact-page" >
+            <div className="contact-page" >
+
                 <div className="wrapper-top">
-                    <div /*style={contactPics}*/ className="contact-pics">
+                    <div className="contact-pics">
                         <img src={Justyna} alt="pic1" style={pic} />
                     </div>
-                    <form /*style={contactForm}*/ className="contact-form" onSubmit={this.handleSubmit}>
-                        <h1>Write something to me !</h1>
+                    <form className="contact-form" onSubmit={this.handleSubmit}>
+                        <h1>Write something to me!</h1>
                         <div>
                             <label>Tell me your name:</label>
                             <input
@@ -142,17 +107,22 @@ export class Contact extends Component {
                             </textarea>
                         </div>
                         <button
-                            type="submit" value="Submit">Submit</button>
+                            type="submit" 
+                            value="Submit"
+                            className="contact-button">Submit</button>
                     </form>
                 </div>
 
                 <div className="wrapper-bottom">
-                    <div /*style={contactAddress}*/ className="contact-address">
-                        <h1>Address + contact + social media</h1>
-                        <SocialIcon network="twitter"  target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" style={{ height: 100, width: 100 }} />
-                        
+                    <div className="contact-address">
+                        <h1>You can contact me many different ways :)</h1>
+                        <h2>You can call me</h2>
+                        <h2>(+44) 7474 105 550</h2>
+                        <h2>or you can follow me on social media...</h2>
+                        <SocialIcon network="facebook" target="_blank" url="https://www.facebook.com/justyna.marczynska/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
+                        <SocialIcon network="instagram" target="_blank" url="https://www.instagram.com/justyna_marczynska78/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
+                        <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social" />               
                     </div>
-                    
                     <div style={contactMapWrapper}>
                         <Map
                             google={this.props.google}
