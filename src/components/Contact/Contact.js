@@ -85,21 +85,21 @@ export class Contact extends Component {
                     </div>
                     <form className="contact-form" onSubmit={this.handleSubmit}>
                         <h1>Write something to me!</h1>
-                        <div>
+                        <div className="name">
                             <label>Tell me your name:</label>
                             <input
                                 type="text"
                                 name="name"
                                 value={this.state.name} onChange={this.handleUserName} />
                         </div>
-                        <div>
+                        <div className="email">
                             <label>And your email:</label>
                             <input
                                 type="email"
                                 name="email"
                                 value={this.state.email} onChange={this.handleUserEmail} />
                         </div>
-                        <div>
+                        <div className="textarea">
                             <label>Your message:</label>
                             <textarea
                                 value={this.state.comments}
