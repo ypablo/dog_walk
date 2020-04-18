@@ -2,7 +2,8 @@ import React, { Component } from "react"
 import "./Contact.css"
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react"
 import Justyna from "../../images/justyna.jpg"
-
+//import { SocialMediaIconsReact } from "social-media-icons-react"
+import { SocialIcon } from 'react-social-icons';
 
 const formValid = (formErrors) => {
     let valid = true
@@ -85,7 +86,7 @@ export class Contact extends Component {
             border: '1px solid #000',
             gridArea: 'form',
             backgroundColor: '#FFBACD'
-        }*/
+        }
         const contactAddress = {
             width: '100%',
             height: '600px',
@@ -93,7 +94,7 @@ export class Contact extends Component {
             border: '1px solid #000',
             gridArea: 'address',
             backgroundColor: '#4682B4'
-        }
+        }*/
         const contactMapWrapper = {
             width: '602px',
             height: '602px',
@@ -145,19 +146,23 @@ export class Contact extends Component {
                     </form>
                 </div>
 
-                {/*
-                <div style={contactAddress}>
-                    Address + contact + social media
+                <div className="wrapper-bottom">
+                    <div /*style={contactAddress}*/ className="contact-address">
+                        <h1>Address + contact + social media</h1>
+                        <SocialIcon network="twitter"  target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" style={{ height: 100, width: 100 }} />
+                        
+                    </div>
+                    
+                    <div style={contactMapWrapper}>
+                        <Map
+                            google={this.props.google}
+                            style={contactMap}
+                            zoom={10}
+                            initialCenter={{ lat: 55.9533, lng: -3.1883 }}>
+                            <Marker position={{ lat: 55.9533, lng: -3.1883 }} />
+                        </Map>
+                    </div>
                 </div>
-                <div style={contactMapWrapper}>
-                    <Map
-                        google={this.props.google}
-                        style={contactMap}
-                        zoom={10}
-                        initialCenter={{ lat: 55.9533, lng: -3.1883 }}>
-                        <Marker position={{ lat: 55.9533, lng: -3.1883 }} />
-                    </Map>
-                </div>*/}
             </div >
         )
     }

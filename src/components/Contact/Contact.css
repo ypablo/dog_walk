@@ -26,19 +26,27 @@
 .contact-form {
     width: 600px;
     height: 600px;
-    
     margin: 10px 0;
     background-color: #8cbcb9;
 }
-/*
+
+.wrapper-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8cbcb9;
+    position: absolute;
+    width: 100%;
+    top: 670px;
+}
+
 .contact-address {
-    grid-area: address;
     width: 600px;
     height: 600px;
     border: 1px solid #000;
-    margin: 10px;
+    margin: 10px 0;
 }
-
+/*
 .contact-map {
     grid-area: map;
     width: 600px;
@@ -47,3 +55,6 @@
     margin: 10px;
 }*/
 
+.twitter {
+    margin: 10px;
+}
