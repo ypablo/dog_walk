@@ -4,11 +4,10 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react"
 import Justyna from "../../images/justyna.jpg"
 import { SocialIcon } from 'react-social-icons';
 
-const formValid = (formErrors) => {
-    let valid = true
-    Object.values(formErrors).forEach(val => val.length > 0 && (valid = false))
-    return valid
-}
+
+const emailRegex = RegExp(
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  );
 
 export class Contact extends Component {
     constructor(props) {
@@ -16,26 +15,17 @@ export class Contact extends Component {
         this.state = {
             name: '',
             email: '',
-            comments: '',
-            formErrors: {
-                name: '',
-                email: '',
-                comments: ''
-            }
+            comments: ''
         }
     }
 
     handleUserName = (e) => {
-        /*let formErrors = this.state.formErrors
-        formErrors = value.length < 3 && value.length > 0 ?
-            'Minimum 3 charachters required' :
-            ''
-            */
         this.setState({
             name: e.target.value
         })
     }
     handleUserEmail = (e) => {
+        e.preventDefault();
         this.setState({
             email: e.target.value
         })
@@ -47,34 +37,26 @@ export class Contact extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        if (formValid(this.state.formErrors)) {
-            alert(`Hi ${this.state.name} your message has been submited :D`)
-            console.log(`Submitted: 
-            ${this.state.name} 
-            ${this.state.email} 
-            ${this.state.comments}`)
-        } else {
-            console.error('Form invalid - display error message')
-        }
+        
     }
 
 
     render() {
-       
         const contactMapWrapper = {
             width: '502px',
             height: '402px',
             margin: '10px',
+            overflow: 'hidden',
+            border: '1px solid #000'
         }
         const contactMap = {
             width: '500px',
-            height: '400px'
+            height: '400px',
         }
         const pic = {
             width: '100%',
             height: '100%'
         }
-
 
         return (
             <div className="contact-page" >
@@ -102,12 +84,15 @@ export class Contact extends Component {
                         <div className="textarea">
                             <label>Your message:</label>
                             <textarea
+                                type="text"
+                                name="textarea"
                                 value={this.state.comments}
                                 onChange={this.handleUserComments}>
                             </textarea>
                         </div>
                         <button
-                            type="submit" 
+                            type="submit"
+                            name="submit" 
                             value="Submit"
                             className="contact-button">Submit</button>
                     </form>
@@ -123,7 +108,7 @@ export class Contact extends Component {
                         <SocialIcon network="instagram" target="_blank" url="https://www.instagram.com/justyna_marczynska78/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
                         <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social" />               
                     </div>
-                    <div style={contactMapWrapper}>
+                    <div style={contactMapWrapper} id="MapWrapper">
                         <Map
                             google={this.props.google}
                             style={contactMap}

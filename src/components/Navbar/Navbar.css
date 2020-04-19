@@ -21,3 +21,9 @@
     font-size: x-large;
     margin: 0 5px;
 }
+.nav-li {
+    color:#60401f ;
+}
+.nav-li:hover {
+    color: burlywood;
+}

@@ -9,10 +9,10 @@ export default function Navbar() {
             <div className="nav-logo"><img src={Dog} alt="" /></div>
             <ul className="nav-links">
                 <Link to="/" style={{ textDecoration: "none", marginRight: "15px" }}>
-                    <li>Home</li>
+                    <li className="nav-li">Home</li>
                 </Link>
                 <Link to="/contact" style={{ textDecoration: "none" }}>
-                    <li>Contact</li>
+                    <li className="nav-li">Contact</li>
                 </Link>
             </ul>
         </nav>

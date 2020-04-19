@@ -263,7 +263,7 @@ export default class Calendar extends Component {
 
         return (
             <div className="calendar">
-                <h1>Calendar</h1>
+                <h1 className="calendar-label">Calendar</h1>
                 <div className="nav">
                     <img src={left} alt="" onClick={(e) => { this.onPrev() }} className="prev-calendar" />
                     <div className="calendar-navi">
