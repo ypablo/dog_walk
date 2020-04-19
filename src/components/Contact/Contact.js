@@ -37,7 +37,13 @@ export class Contact extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        
+        console.log(this.state)
+        this.setState ({
+            name: '',
+            email: '',
+            comments: ''
+        })
+        alert("Message has been sucessfully submitted :)")
     }
 
 
