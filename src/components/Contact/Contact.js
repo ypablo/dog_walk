@@ -1,13 +1,9 @@
-import React, { Component } from "react"
+import React, { Component  } from "react"
 import "./Contact.css"
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react"
 import Justyna from "../../images/justyna.jpg"
 import { SocialIcon } from 'react-social-icons';
-
-
-const emailRegex = RegExp(
-    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  );
+import axios from "axios";
 
 export class Contact extends Component {
     constructor(props) {
@@ -35,8 +31,40 @@ export class Contact extends Component {
             comments: e.target.value
         })
     }
+    
+
     handleSubmit = (e) => {
         e.preventDefault()
+        const form = e.target;
+        const {name, email, comments} = this.state
+        let messages = []
+        //Simple validation
+        if (name === "" || name === null) {
+            messages.push("Provide your name.\n")   
+        } else if (name.length < 3) {
+            messages.push("I am sure your name is longer :)\n")
+        }
+        if (email === "" || email === null) {
+            messages.push("Email address is required.\n")
+        }
+        if (comments === "" || comments === null) {
+            messages.push("Write a message.\n") 
+        } else if (comments.length < 3) {
+            messages.push("Write something more :)\n")
+        }
+        //if any error message ened up in message array stop function and display error message
+        if (messages.length > 0) {
+            e.preventDefault()
+            alert(messages.join(""))
+            return
+        }
+        //if there is no errors use axios to send message to formspree and designted email
+        axios({
+            method: "post",
+            url: "https://formspree.io/xnqbkebg",
+            data: new FormData(form)
+          })
+        //Display everything in console
         console.log(this.state)
         this.setState ({
             name: '',
@@ -71,7 +99,10 @@ export class Contact extends Component {
                     <div className="contact-pics">
                         <img src={Justyna} alt="pic1" style={pic} />
                     </div>
-                    <form className="contact-form" onSubmit={this.handleSubmit}>
+                    <form className="contact-form" onSubmit={this.handleSubmit} 
+                    //action="https://formspree.io/xnqbkebg"
+                    //method="POST"
+                    >
                         <h1>Write something to me!</h1>
                         <div className="name">
                             <label>Tell me your name:</label>
@@ -81,17 +112,18 @@ export class Contact extends Component {
                                 value={this.state.name} onChange={this.handleUserName} />
                         </div>
                         <div className="email">
-                            <label>And your email:</label>
+                            <label htmlFor="email">And your email:</label>
                             <input
                                 type="email"
-                                name="email"
-                                value={this.state.email} onChange={this.handleUserEmail} />
+                                value={this.state.email} 
+                                onChange={this.handleUserEmail} 
+                                name="_replyto"/>
                         </div>
                         <div className="textarea">
-                            <label>Your message:</label>
+                            <label htmlFor="message">Your message:</label>
                             <textarea
                                 type="text"
-                                name="textarea"
+                                name="message"
                                 value={this.state.comments}
                                 onChange={this.handleUserComments}>
                             </textarea>
@@ -99,7 +131,7 @@ export class Contact extends Component {
                         <button
                             type="submit"
                             name="submit" 
-                            value="Submit"
+                            value="Send"
                             className="contact-button">Submit</button>
                     </form>
                 </div>
