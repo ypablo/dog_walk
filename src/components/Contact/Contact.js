@@ -87,22 +87,16 @@ export class Contact extends Component {
             width: '500px',
             height: '400px',
         }
-        const pic = {
-            width: '100%',
-            height: '100%'
-        }
+        const mediaMatch = window.matchMedia('(max-width: 1150)');
 
         return (
             <div className="contact-page" >
 
                 <div className="wrapper-top">
                     <div className="contact-pics">
-                        <img src={Justyna} alt="pic1" style={pic} />
+                        <img src={Justyna} alt="pic1" className="contact-pic1" />
                     </div>
-                    <form className="contact-form" onSubmit={this.handleSubmit} 
-                    //action="https://formspree.io/xnqbkebg"
-                    //method="POST"
-                    >
+                    <form className="contact-form" onSubmit={this.handleSubmit} >
                         <h1>Write something to me!</h1>
                         <div className="name">
                             <label>Tell me your name:</label>
