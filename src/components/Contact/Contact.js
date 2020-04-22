@@ -16,7 +16,6 @@ export class Contact extends Component {
         }
     }
 
-
     handleUserName = (e) => {
         this.setState({
             name: e.target.value
@@ -34,7 +33,6 @@ export class Contact extends Component {
         })
     }
     
-
     handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -75,7 +73,6 @@ export class Contact extends Component {
         })
         alert("Message has been sucessfully submitted :)")
     }
-
 
     render() {
         return (
