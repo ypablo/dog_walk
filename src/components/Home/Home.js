@@ -26,7 +26,7 @@ export default class MyCarousel extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Carousel className="main"
                     value={this.state.value}
                     onChange={this.onChange}
