@@ -78,32 +78,6 @@ export class Contact extends Component {
 
 
     render() {
-
-        const contactMapWrapper = {
-            width: '502px',
-            height: '402px',
-            margin: '10px',
-            overflow: 'hidden',
-            border: '1px solid #000'
-        }
-        const contactMap = {
-            width: '500px',
-            height: '400px'
-        }
-
-        const contactMapWrapperMedium = {
-            width: '402px',
-            height: '302px',
-            margin: '10px',
-            overflow: 'hidden',
-            border: '1px solid #000'
-        }
-        const contactMapMedium = {
-            width: '400px',
-            height: '300px'
-        }
-        
-
         return (
             <div className="contact-page" >
                 <div className="wrapper-top">
@@ -154,14 +128,12 @@ export class Contact extends Component {
                         <SocialIcon network="instagram" target="_blank" url="https://www.instagram.com/justyna_marczynska78/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
                         <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social" />               
                     </div>
-                    <div  id="MapWrapper">
+                    <div id="MapWrapper">
                         <Map
+                            id="contactMap"
                             google={this.props.google}
-                            style={contactMap}
                             zoom={10}
                             resetBoundsOnResize={true}
-                           
-                            
                             initialCenter={{ lat: 55.9533, lng: -3.1883 }}>
                             <Marker position={{ lat: 55.9533, lng: -3.1883 }} />
                         </Map>

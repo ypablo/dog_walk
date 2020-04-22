@@ -88,14 +88,18 @@ label {
 
 #MapWrapper div:first-child {
     position: relative!important;
+    height: 100%;
 }
-
 #MapWrapper {
     width: 502px;
     height: 402px;
     margin: 10px;
     overflow: hidden;
     border: 1px solid #000;
+}
+#contactMap {
+    width: 500px;
+    height: 400px;
 }
 
 .contact-address {
