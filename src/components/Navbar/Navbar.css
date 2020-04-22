@@ -29,6 +29,9 @@
 }
 
 @media (max-width: 490px) {
+    .nav {
+        justify-content: space-evenly;
+    }
     .nav-links {
         font-size: larger;
         margin: 0 10px;
@@ -36,5 +39,6 @@
     .nav-logo {
         width: 124px;
         height: 114px;
+        
     }
 }
