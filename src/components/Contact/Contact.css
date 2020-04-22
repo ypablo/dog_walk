@@ -90,7 +90,13 @@ label {
     position: relative!important;
 }
 
-
+#MapWrapper {
+    width: 502px;
+    height: 402px;
+    margin: 10px;
+    overflow: hidden;
+    border: 1px solid #000;
+}
 
 .contact-address {
     display: inline-block;
@@ -109,7 +115,10 @@ label {
     .contact-pics, .contact-address {
         transform: scale(0.8, 0.8);
     }
-    
+    #MapWrapper {
+        width: 252px;
+        height: 402px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -119,11 +128,19 @@ label {
     .contact-pics, .contact-address {
         transform: scale(1, 1);
     }
+    #MapWrapper {
+        width: 502px;
+        height: 402px;
+    }
 }
 
 @media (max-width: 600px) {
     .contact-pics, .contact-address {
         transform: scale(0.8, 0.8);
+    }
+    #MapWrapper {
+        width: 472px;
+        height: 402px;
     }
 
 }
@@ -134,6 +151,10 @@ label {
     .contact-form {
         transform: scale(0.8, 0.8);
     }
+    #MapWrapper {
+        width: 402px;
+        height: 402px;
+    }
 }
 
 @media (max-width: 400px) {
@@ -142,5 +163,9 @@ label {
     }
     .contact-form {
         transform: scale(0.7, 0.7);
+    }
+    #MapWrapper {
+        width: 302px;
+        height: 402px;
     }
 }
