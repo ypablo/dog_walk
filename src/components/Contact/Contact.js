@@ -4,6 +4,7 @@ import { Map, GoogleApiWrapper, Marker } from "google-maps-react"
 import Justyna from "../../images/justyna.jpg"
 import { SocialIcon } from 'react-social-icons';
 import axios from "axios";
+import Media from 'react-media'
 
 export class Contact extends Component {
     constructor(props) {
@@ -11,9 +12,10 @@ export class Contact extends Component {
         this.state = {
             name: '',
             email: '',
-            comments: ''
+            comments: '',
         }
     }
+
 
     handleUserName = (e) => {
         this.setState({
@@ -76,6 +78,7 @@ export class Contact extends Component {
 
 
     render() {
+
         const contactMapWrapper = {
             width: '502px',
             height: '402px',
@@ -85,9 +88,21 @@ export class Contact extends Component {
         }
         const contactMap = {
             width: '500px',
-            height: '400px',
+            height: '400px'
         }
-        const mediaMatch = window.matchMedia('(max-width: 1150)');
+
+        const contactMapWrapperMedium = {
+            width: '402px',
+            height: '302px',
+            margin: '10px',
+            overflow: 'hidden',
+            border: '1px solid #000'
+        }
+        const contactMapMedium = {
+            width: '400px',
+            height: '300px'
+        }
+        
 
         return (
             <div className="contact-page" >
@@ -140,15 +155,19 @@ export class Contact extends Component {
                         <SocialIcon network="instagram" target="_blank" url="https://www.instagram.com/justyna_marczynska78/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
                         <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social" />               
                     </div>
-                    <div style={contactMapWrapper} id="MapWrapper">
-                        <Map
-                            google={this.props.google}
-                            style={contactMap}
-                            zoom={10}
-                            initialCenter={{ lat: 55.9533, lng: -3.1883 }}>
-                            <Marker position={{ lat: 55.9533, lng: -3.1883 }} />
-                        </Map>
-                    </div>
+
+                   
+                            <div style={contactMapWrapper} id="MapWrapper">
+                                <Map
+                                    google={this.props.google}
+                                    style={contactMap}
+                                    zoom={10}
+                                    resetBoundsOnResize={true}
+                                    initialCenter={{ lat: 55.9533, lng: -3.1883 }}>
+                                    <Marker position={{ lat: 55.9533, lng: -3.1883 }} />
+                                </Map>
+                            </div>
+                     
                 </div>
             </div >
         )
