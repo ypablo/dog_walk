@@ -27,3 +27,14 @@
 .nav-li:hover {
     color: burlywood;
 }
+
+@media (max-width: 490px) {
+    .nav-links {
+        font-size: larger;
+        margin: 0 10px;
+    }
+    .nav-logo {
+        width: 124px;
+        height: 114px;
+    }
+}

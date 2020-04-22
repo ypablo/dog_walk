@@ -123,7 +123,7 @@ export class Contact extends Component {
                         <h2>or you can follow me on social media...</h2>
                         <SocialIcon network="facebook" target="_blank" url="https://www.facebook.com/justyna.marczynska/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
                         <SocialIcon network="instagram" target="_blank" url="https://www.instagram.com/justyna_marczynska78/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>
-                        <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social" />               
+                        <SocialIcon network="twitter" target="_blank" url="https://twitter.com/JustaMarcz/" fgColor="#fff" bgColor="#519e8a" style={{ height: 100, width: 100, margin: 10 }} className="social"/>               
                     </div>
                     <div id="MapWrapper">
                         <Map

@@ -1,3 +1,6 @@
+.contact-page {
+    background-color: #8cbcb9;
+}
 .wrapper-top {
     display: flex;
     justify-content: center;
@@ -111,6 +114,7 @@ label {
     margin: 10px 0;
     letter-spacing: 1px;
 }
+
 .social:hover {
     border: 2px solid #316155;
     border-radius: 50%;
@@ -118,7 +122,8 @@ label {
 
 @media (max-width: 1150px) {
     .contact-pics, .contact-address {
-        transform: scale(0.8, 0.8);
+        width: 480px;
+        height: 400px;
     }
     #MapWrapper {
         width: 252px;
@@ -132,7 +137,8 @@ label {
         
     }
     .contact-pics, .contact-address {
-        transform: scale(1, 1);
+        width: 600px;
+        height: 500px;
     }
     #MapWrapper {
         width: 502px;
@@ -168,16 +174,17 @@ label {
         padding:5px;
     }
     .contact-pics, .contact-address {
-        /*transform: scale(0.6, 0.6);*/
         margin: 0;
-        padding:0;
+        padding: 0;
         width: 360px;
         height: 300px;
-       
+    }
+    .contact-address {
+        margin-bottom: 10px;
     }
     .contact-form {
-        transform: scale(0.8, 0.8);
-        width: auto;
+        width: 360px;
+        height: 400px;
         margin: 0;
         padding:0;
        
