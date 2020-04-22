@@ -6,7 +6,7 @@ import Dog from "../../images/dog-logo.png"
 export default function Navbar() {
     return (
         <nav className="nav">
-            <div className="nav-logo"><img src={Dog} alt="" /></div>
+            <div className="nav-logo"><img src={Dog} alt="logo" /></div>
             <ul className="nav-links">
                 <Link to="/" style={{ textDecoration: "none", marginRight: "15px" }}>
                     <li className="nav-li">Home</li>
