@@ -121,11 +121,11 @@ export class Contact extends Component {
                         <h2>You can call me</h2>
                         <h2>(+44) 7474 105 550</h2>
                         <h2>or you can follow me on social media...</h2>
-                        
+                        <div className="social-icons">
                             <SocialIcon 
                                 network="facebook" 
                                 target="_blank" 
-                                url="https://www.facebook.com/justyna.marczynska/" 
+                                url="{{ .Site.BaseURL }} https://www.facebook.com/justyna.marczynska/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 
@@ -133,7 +133,7 @@ export class Contact extends Component {
                             <SocialIcon 
                                 network="instagram" 
                                 target="_blank" 
-                                url="https://www.instagram.com/justyna_marczynska78/" 
+                                url=" {{ .Site.BaseURL }} https://www.instagram.com/justyna_marczynska78/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 
@@ -141,12 +141,12 @@ export class Contact extends Component {
                             <SocialIcon 
                                 network="twitter" 
                                 target="_blank" 
-                                url="https://twitter.com/JustaMarcz/" 
+                                url=" {{ .Site.BaseURL }}https://twitter.com/JustaMarcz/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 
                                 className="social"/>               
-                       
+                        </div>
                     </div>
                     <div id="MapWrapper">
                         <Map
