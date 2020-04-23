@@ -1,0 +1,32 @@
+.default-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: lightskyblue;
+    height: 85vh;
+    margin:0;
+    padding: 0;
+    font-size: xx-large;
+}
+
+.default-button {
+    background-color:seagreen;
+    border: none;
+    font-size: xxx-large;
+    padding: 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 20px 0;
+}
+
+@media (max-width: 600px) {
+    .default-page {
+        font-size: large;
+    }
+    
+    .default-button {
+        font-size: xx-large;
+    }
+}

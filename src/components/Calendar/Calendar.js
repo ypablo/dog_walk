@@ -22,7 +22,7 @@ export default class Calendar extends Component {
     }
 
     changeColor = (e, d) => {
-        e.preventDefault();
+        e.preventDefault()
         const updatedItems = [...this.state.selectedDays, d]
         //const updatedClicked = [...updatedItems,]
 
@@ -33,24 +33,22 @@ export default class Calendar extends Component {
         )
     }
 
-
-
     handleClick(e) {
         let cName = e.currentTarget.className;
         let classNames = []
         switch (cName) {
             case 'day today':
-                console.log('It is a light purple box');
+                console.log('It is a light purple box')
                 break;
             case 'day':
-                console.log('It is a white box');
+                console.log('It is a white box')
                 classNames.push("active")
                 break;
             case 'active':
-                console.log('It is a purple box');
+                console.log('It is a purple box')
                 break;
             default:
-                console.log('I don\'t know the exact color');
+                console.log('I don\'t know the exact color')
                 break;
         }
     }
@@ -86,7 +84,7 @@ export default class Calendar extends Component {
     firstDayOfMonth = () => {
         let dateObject = this.state.dateObject
         let firstDay = moment(dateObject).startOf("month").format("d") //Day of week 0.. 1.. 2..
-        return firstDay - 1;
+        return firstDay - 1
     }
 
     daysInMonth = () => {
@@ -258,7 +256,7 @@ export default class Calendar extends Component {
         });
         //Wrap all rows in a </td>
         let daysinmonth = rows.map((d, i) => {
-            return <tr key={i}>{d}</tr>;
+            return <tr key={i}>{d}</tr>
         });
 
         return (

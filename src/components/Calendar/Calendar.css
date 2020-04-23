@@ -5,14 +5,12 @@
     align-items: center;
     flex-direction: column;
 }
-
 .dates {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
-
 .day, .empty {
     height: 75px;
     background-color: #fff;
@@ -23,7 +21,6 @@
     text-align: center;
     padding: 0 10px;
 }
-
 .day:hover {
     background-color:#D8BFD8;
     cursor: pointer;
@@ -32,7 +29,6 @@
     background-color:#fff;
     cursor: auto;
 }
-
 .week-day {
     height: 65px;
     width: 120px;
@@ -78,8 +74,6 @@
 .active:hover {
     background-color: #9370DB;
 }
-
-
 
 @media (max-width: 900px) {
     .calendar {

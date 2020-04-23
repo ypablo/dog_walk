@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./Home.css"
-import Carousel from '@brainhubeu/react-carousel';
-import '@brainhubeu/react-carousel/lib/style.css';
+import Carousel from '@brainhubeu/react-carousel'
+import '@brainhubeu/react-carousel/lib/style.css'
 import dog01 from "../../images/dog01.jpg"
 import dog02 from "../../images/dog02.jpg"
 import dog03 from "../../images/dog03.jpg"
@@ -15,14 +15,13 @@ export default class MyCarousel extends Component {
         this.state = {
             value: 0,
             selected: []
-        };
-        this.onChange = this.onChange.bind(this);
+        }
+        this.onChange = this.onChange.bind(this)
     }
 
     onChange(value) {
         this.setState({ value });
     }
-
 
     render() {
         return (
