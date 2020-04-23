@@ -3,15 +3,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: lightskyblue;
+    background-color: burlywood;
     height: 85vh;
     margin:0;
     padding: 0;
     font-size: xx-large;
+    letter-spacing: 1px;
 }
 
 .default-button {
-    background-color:seagreen;
+    background-color: goldenrod ;
     border: none;
     font-size: xxx-large;
     padding: 15px;
@@ -19,6 +20,7 @@
     cursor: pointer;
     border-radius: 25px;
     margin: 20px 0;
+    letter-spacing: 3px;
 }
 
 @media (max-width: 600px) {
