@@ -67,10 +67,11 @@
     margin: 10px;
     cursor: pointer;
 }
+/*
 .active {
     background-color: #9370DB;
     color: #fff;
-}
+}*/
 .active:hover {
     background-color: #9370DB;
 }

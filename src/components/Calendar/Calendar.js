@@ -13,12 +13,14 @@ export default class Calendar extends Component {
             dateObject: moment(),
             allmonths: moment.months(),
             selectedDay: null,
-            bgColor: false,
+            bgColor: true,
             selectedDays: [],
-            clicked: true,
+            clicked: false,
             showYearTable: false,
+
+            color: '#FFF',
+            data:[]
         }
-        this.baseState = this.state
     }
 
     changeColor = (e, d) => {
@@ -26,57 +28,36 @@ export default class Calendar extends Component {
         const updatedItems = [...this.state.selectedDays, d]
         //const updatedClicked = [...updatedItems,]
 
-        this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: !this.state.bgColor, clicked: this.state.clicked },
+
+        this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: this.state.color ? "#9370DB" : "#FFF", clicked: !this.state.clicked },
             () => {
-                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays)
+                console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays, this.state.bgColor)
             }
         )
     }
+    
+    clicked = (event) => {
+        //e.preventDefault()
+        //change background color
+        //let currentColor = event.target.getAttribute['data-color'].value;
+        //console.log('target info', event.currentTarget);
+        //console.log('event info', event);
 
-    handleClick(e) {
-        let cName = e.currentTarget.className;
-        let classNames = []
-        switch (cName) {
-            case 'day today':
-                console.log('It is a light purple box')
-                break;
-            case 'day':
-                console.log('It is a white box')
-                classNames.push("active")
-                break;
-            case 'active':
-                console.log('It is a purple box')
-                break;
-            default:
-                console.log('I don\'t know the exact color')
-                break;
-        }
-    }
+  	    let currentColor = this.refs.cell.getAttribute("data-color")
+    
+        console.log(event.target.id)
+        console.log(event.target)
+        //console.log(this.refs.cell)
+        console.log(currentColor)
 
-    deleteItem = (d) => {
-        const itemsArray = this.state.selectedDays
-        const index = itemsArray.indexOf(d)
-        itemsArray.splice(index, 1)
-        //if (index > -1) {
-        //    itemsArray.splice(index, 1);
-        // }
-        return itemsArray
-        //this.setState({ selectedDays: itemsArray })
+        //let newColor
+        //let currentColor = event.target.getAttribute('data-color');
+        
+        let newColor = currentColor === "#FFF" ? "#9370DB" : "#FFF"
+        event.target.style.backgroundColor = newColor;
+        this.refs.cell.setAttribute("data-color", newColor) 
 
     }
-
-    removeDuplicates = () => {
-        const array = this.state.selectedDays
-        const uniqueSet = new Set(array)
-        const backToArray = [...uniqueSet]
-        return backToArray
-        //this.setState({ selectedDays: backToArray })
-    }
-
-    checkUniqueArray = (myArray) => {
-        return myArray.length === new Set(myArray).size
-    }
-
 
 
 
@@ -130,7 +111,6 @@ export default class Calendar extends Component {
         });
     };
 
-
     reset = () => {
         let curr = moment().month()
         this.setState({ dateObject: this.state.dateObject.month(curr, "month"), selectedDays: [] })
@@ -172,52 +152,8 @@ export default class Calendar extends Component {
             if (currentDay === "today") {
                 classNames.push("today")
             }
-            /*
-            if (this.state.selectedDays.includes(d)) {
-                /*if (this.checkUniqueArray(this.state.selectedDays)) {
-                    console.log("Unique number")
-                    classNames.push("active")
-                } else {
-                    console.log("Not unique number")
-                    //this.deleteItem(d)
-                    if (classNames.includes("active")) {
-                        classNames.pop()
-    
-                    }
-                    //classNames.filter(word => word.length > 5)
-    
-                }
 
-                if (classNames.length === 1) {
-
-                    classNames.push("active")
-                    console.log("pop")
-
-                } else if (classNames.length === 2) {
-                    classNames.pop()
-                    console.log("push")
-
-                }
-
-            }*/
-
-            //classNames.push("active")
-            //classNames.push("active")
-            //this.deleteItem(d)
-            //console.log(`Is it unique: ${this.checkUniqueArray(this.state.selectedDays)}`)
-
-            //} else {
-            //classNames.pop("active")
-            //classNames.filter(word => word.length < 5)
-
-            //console.log(classNames)
-
-
-            if (this.state.clicked && this.state.selectedDay === d) {
-                classNames.push('active');
-            }
-
-            //console.log(beasts.indexOf('bison'));
+            
 
             daysInMonth.push(
                 <td
@@ -225,7 +161,11 @@ export default class Calendar extends Component {
                     className={classNames.join(" ")}
                     //className={this.state.activeKey === d ? "day active" : "day"}
                     //className={this.state.selectedDays.includes(d) ? "day active" : "day"}
-                    onClick={(e) => this.changeColor(e, d)}
+                    //onClick={(e) => this.changeColor(e, d)}
+                    data-color="#FFF"
+                    ref="cell"
+                    style={{backgroundColor:"#FFF"}}
+                    onClick={(e)=> this.clicked(e)}
                     id={d}>
                     {/*this.state.bgColor ? d : d*/}
                     {d}
@@ -256,12 +196,13 @@ export default class Calendar extends Component {
         });
         //Wrap all rows in a </td>
         let daysinmonth = rows.map((d, i) => {
-            return <tr key={i}>{d}</tr>
+            return <tr key={i} data-color='#FFF' ref="tester" >{d}</tr>
         });
 
         return (
             <div className="calendar">
                 <h1 className="calendar-label">Calendar</h1>
+                <span></span>
                 <div className="nav">
                     <img src={left} alt="" onClick={(e) => { this.onPrev() }} className="prev-calendar" />
                     <div className="calendar-navi">
