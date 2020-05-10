@@ -125,7 +125,7 @@ export class Contact extends Component {
                             <SocialIcon 
                                 network="facebook" 
                                 target="_blank" 
-                                url="{{ .Site.BaseURL }} https://www.facebook.com/justyna.marczynska/" 
+                                url="https://www.facebook.com/justyna.marczynska/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 
@@ -133,7 +133,7 @@ export class Contact extends Component {
                             <SocialIcon 
                                 network="instagram" 
                                 target="_blank" 
-                                url=" {{ .Site.BaseURL }} https://www.instagram.com/justyna_marczynska78/" 
+                                url=" https://www.instagram.com/justyna_marczynska78/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 
