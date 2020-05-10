@@ -141,7 +141,7 @@ export class Contact extends Component {
                             <SocialIcon 
                                 network="twitter" 
                                 target="_blank" 
-                                url=" {{ .Site.BaseURL }}https://twitter.com/JustaMarcz/" 
+                                url="https://twitter.com/JustaMarcz/" 
                                 fgColor="#fff" 
                                 bgColor="#519e8a" 
                                 style={{ height: 100, width: 100, margin: 10 }} 

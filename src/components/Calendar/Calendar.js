@@ -46,7 +46,7 @@ export default class Calendar extends Component {
   	    let currentColor = this.refs.cell.getAttribute("data-color")
     
         console.log(event.target.id)
-        console.log(event.target)
+        
         //console.log(this.refs.cell)
         console.log(currentColor)
 
@@ -56,7 +56,7 @@ export default class Calendar extends Component {
         let newColor = currentColor === "#FFF" ? "#9370DB" : "#FFF"
         event.target.style.backgroundColor = newColor;
         this.refs.cell.setAttribute("data-color", newColor) 
-
+        console.log(event.target)
     }
 
 
