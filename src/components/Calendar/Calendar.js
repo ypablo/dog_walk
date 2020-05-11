@@ -12,16 +12,16 @@ export default class Calendar extends Component {
             today: moment(),
             dateObject: moment(),
             allmonths: moment.months(),
-            selectedDay: null,
-            bgColor: true,
-            selectedDays: [],
-            clicked: false,
-            showYearTable: false,
+            //selectedDay: null,
+            //bgColor: true,
+            //selectedDays: [],
+            //clicked: false,
+            //showYearTable: false,
 
            
         }
     }
-
+    /*
     changeColor = (e, d) => {
         e.preventDefault()
         const updatedItems = [...this.state.selectedDays, d]
@@ -32,26 +32,20 @@ export default class Calendar extends Component {
                 console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays, this.state.bgColor)
             }
         )
-    }
+    }*/
     
     //Change color of calendar cell after click
     clicked = (event) => {
         let currentColor = event.target.getAttribute("data-color")
-        //let newColor = currentColor == "#FFF" ? "#e74c3c" : "#FFF"  
-        
+        //let newColor = currentColor == "#FFF" ? "#e74c3c" : "#FFF"        
         let newColor
-        if (currentColor == "#FFF") {
+        if (currentColor == "#b8e994") {
             newColor = "#e55039"
         } else if (currentColor == "#e55039") {
             newColor = "#f6b93b"
         } else if (currentColor == "#f6b93b") {
             newColor = "#b8e994"
-        } else {
-            newColor = "#FFF"
-        }
-
-
-
+        } 
        //this.refs.tester.setAttribute("data-color", newColor) 
         event.target.setAttribute("data-color", newColor)
         event.target.style.backgroundColor = newColor;
@@ -62,7 +56,6 @@ export default class Calendar extends Component {
         let firstDay = moment(dateObject).startOf("month").format("d") //Day of week 0.. 1.. 2..
         return firstDay - 1
     }
-
     daysInMonth = () => {
         return this.state.dateObject.daysInMonth()
     }
@@ -99,7 +92,6 @@ export default class Calendar extends Component {
             dateObject: this.state.dateObject.subtract(1, "month"), selectedDay: null
         });
     };
-
     onNext = () => {
         this.setState({
             dateObject: this.state.dateObject.add(1, "month"), selectedDay: null
@@ -107,8 +99,11 @@ export default class Calendar extends Component {
     };
 
     reset = () => {
-        let curr = moment().month()
-        this.setState({ dateObject: this.state.dateObject.month(curr, "month"), selectedDays: [] })
+        let currMonth = moment().month()
+        let currYear = moment().year()
+        let xxx = moment().format("MMMM YYYY")
+        this.setState({ dateObject: this.state.dateObject.month(currMonth, "MMMM YYYY"), selectedDays: [] })
+        console.log(moment().year())
     }
 
 
@@ -141,16 +136,16 @@ export default class Calendar extends Component {
         //Start filling with the first date of the month 
         let daysInMonth = []
         for (let d = 1; d <= this.daysInMonth(); d++) {
-            let currentDate = d == this.currentDate() ? "today" : ""
+            //let currentDate = d == this.currentDate() ? "today" : ""
             let classNames = ["day"]
-            if (currentDate === "today") {
-                classNames.push("today")
-            }
+            //if (currentDate === "today") {
+            //    classNames.push("today")
+            //}
             daysInMonth.push(
                 <td
                     key={d}
                     className={classNames.join(" ")}
-                    data-color="#FFF"     
+                    data-color="#b8e994"     
                     id={d}>
                     {d}
                 </td>
