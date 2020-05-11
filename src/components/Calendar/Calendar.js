@@ -18,8 +18,7 @@ export default class Calendar extends Component {
             clicked: false,
             showYearTable: false,
 
-            color: '#FFF',
-            data:[]
+           
         }
     }
 
@@ -28,7 +27,6 @@ export default class Calendar extends Component {
         const updatedItems = [...this.state.selectedDays, d]
         //const updatedClicked = [...updatedItems,]
 
-
         this.setState({ selectedDay: d, selectedDays: updatedItems, bgColor: this.state.color ? "#9370DB" : "#FFF", clicked: !this.state.clicked },
             () => {
                 console.log("SELECTED DAY: ", this.state.selectedDay, this.state.selectedDays, this.state.bgColor)
@@ -36,31 +34,14 @@ export default class Calendar extends Component {
         )
     }
     
+    //Change color of calendar cell after click
     clicked = (event) => {
-        //e.preventDefault()
-        //change background color
-        //let currentColor = event.target.getAttribute['data-color'].value;
-        //console.log('target info', event.currentTarget);
-        //console.log('event info', event);
-
-  	    let currentColor = this.refs.cell.getAttribute("data-color")
-    
-        console.log(event.target.id)
-        console.log(event.target)
-        //console.log(this.refs.cell)
-        console.log(currentColor)
-
-        //let newColor
-        //let currentColor = event.target.getAttribute('data-color');
-        
-        let newColor = currentColor === "#FFF" ? "#9370DB" : "#FFF"
+        let currentColor = event.target.getAttribute("data-color")
+        let newColor = currentColor == "#FFF" ? "#9370DB" : "#FFF"    
+       //this.refs.tester.setAttribute("data-color", newColor) 
+        event.target.setAttribute("data-color", newColor)
         event.target.style.backgroundColor = newColor;
-        this.refs.cell.setAttribute("data-color", newColor) 
-
     }
-
-
-
 
     firstDayOfMonth = () => {
         let dateObject = this.state.dateObject
@@ -145,34 +126,22 @@ export default class Calendar extends Component {
 
         //Start filling with the first date of the month 
         let daysInMonth = []
-
         for (let d = 1; d <= this.daysInMonth(); d++) {
             let currentDay = d == this.currentDay() ? "today" : ""
             let classNames = ["day"]
             if (currentDay === "today") {
                 classNames.push("today")
             }
-
-            
-
             daysInMonth.push(
                 <td
                     key={d}
                     className={classNames.join(" ")}
-                    //className={this.state.activeKey === d ? "day active" : "day"}
-                    //className={this.state.selectedDays.includes(d) ? "day active" : "day"}
-                    //onClick={(e) => this.changeColor(e, d)}
-                    data-color="#FFF"
-                    ref="cell"
-                    style={{backgroundColor:"#FFF"}}
-                    onClick={(e)=> this.clicked(e)}
+                    data-color="#FFF"     
                     id={d}>
-                    {/*this.state.bgColor ? d : d*/}
                     {d}
                 </td>
             );
         }
-
 
         //Combine blank cells and day cells together. 
         var totalSlots = [...blanks, ...daysInMonth]
@@ -196,7 +165,11 @@ export default class Calendar extends Component {
         });
         //Wrap all rows in a </td>
         let daysinmonth = rows.map((d, i) => {
-            return <tr key={i} data-color='#FFF' ref="tester" >{d}</tr>
+            return <tr 
+                    key={i} 
+                    data-color='#FFF' 
+                    ref="tester" 
+                    onClick={(e) => {this.clicked(e)}}>{d}</tr>
         });
 
         return (
@@ -216,9 +189,9 @@ export default class Calendar extends Component {
                             {weekdayshortname}
                         </tr>
                     </thead>
-                    <tbody>
-                        {daysinmonth}
-                    </tbody>
+                        <tbody>
+                            {daysinmonth}
+                        </tbody>
                 </table>
                 <div className="calendar-navi reset" onClick={this.reset}>Reset</div>
             </div>
