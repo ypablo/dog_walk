@@ -37,7 +37,21 @@ export default class Calendar extends Component {
     //Change color of calendar cell after click
     clicked = (event) => {
         let currentColor = event.target.getAttribute("data-color")
-        let newColor = currentColor == "#FFF" ? "#9370DB" : "#FFF"    
+        //let newColor = currentColor == "#FFF" ? "#e74c3c" : "#FFF"  
+        
+        let newColor
+        if (currentColor == "#FFF") {
+            newColor = "#e55039"
+        } else if (currentColor == "#e55039") {
+            newColor = "#f6b93b"
+        } else if (currentColor == "#f6b93b") {
+            newColor = "#b8e994"
+        } else {
+            newColor = "#FFF"
+        }
+
+
+
        //this.refs.tester.setAttribute("data-color", newColor) 
         event.target.setAttribute("data-color", newColor)
         event.target.style.backgroundColor = newColor;
@@ -127,9 +141,9 @@ export default class Calendar extends Component {
         //Start filling with the first date of the month 
         let daysInMonth = []
         for (let d = 1; d <= this.daysInMonth(); d++) {
-            let currentDay = d == this.currentDay() ? "today" : ""
+            let currentDate = d == this.currentDate() ? "today" : ""
             let classNames = ["day"]
-            if (currentDay === "today") {
+            if (currentDate === "today") {
                 classNames.push("today")
             }
             daysInMonth.push(
@@ -167,15 +181,22 @@ export default class Calendar extends Component {
         let daysinmonth = rows.map((d, i) => {
             return <tr 
                     key={i} 
-                    data-color='#FFF' 
-                    ref="tester" 
+                    //data-color="#b8e994" 
+                    //ref="tester" 
                     onClick={(e) => {this.clicked(e)}}>{d}</tr>
         });
 
         return (
             <div className="calendar">
                 <h1 className="calendar-label">Calendar</h1>
-                <span></span>
+                <div className="allsquares">
+                        <div className="square red"/>
+                        <div className="small_margin" >I'm unavailable</div>              
+                        <div className="square yellow"/>
+                        <div className="small_margin">Partially available</div>    
+                        <div className="square green"/>
+                        <div>Fully available</div>
+                </div>
                 <div className="nav">
                     <img src={left} alt="" onClick={(e) => { this.onPrev() }} className="prev-calendar" />
                     <div className="calendar-navi">
