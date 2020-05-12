@@ -54,7 +54,12 @@
 .today {
     background-color: #D8BFD8;
 }
-.calendar-navi {
+
+.btns {
+    display: flex;
+    
+}
+.calendar-navi  {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,6 +79,25 @@
 .reset:hover {
     background-color: lightgray;
 }
+.pass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    border: 4px solid black;
+    border-radius: 25px;
+    margin: 5px;
+    width: 360px;
+    background-color: #fff;
+    height: 65px;
+    padding: 5px;
+    cursor: pointer;
+    margin: 15px;
+}
+.pass:hover {
+    background-color: lightgray;
+}
+
 .prev-calendar, .next-calendar {
     margin: 10px;
     cursor: pointer;
@@ -105,6 +129,13 @@
 .small_margin {
     margin: 0 15px 0 0;
 }
+
+
+
+
+
+
+
 
 
 

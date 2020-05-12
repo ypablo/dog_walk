@@ -3,7 +3,9 @@ import "./Calendar.css"
 import moment from 'moment'
 import right from "../../images/right.png"
 import left from "../../images/left.png"
+import Modal from "react-modal"
 
+Modal.setAppElement(document.getElementById('root'));
 
 export default class Calendar extends Component {
     constructor(props) {
@@ -12,6 +14,7 @@ export default class Calendar extends Component {
             today: moment(),
             dateObject: moment(),
             allmonths: moment.months(),
+            showModal: false
             //selectedDay: null,
             //bgColor: true,
             //selectedDays: [],
@@ -34,6 +37,20 @@ export default class Calendar extends Component {
         )
     }*/
     
+
+    passHandler = () => {
+        alert("Pass")
+    }
+
+    //Show modal
+    handleOpenModal = () => {
+        this.setState({ showModal: true });
+    }
+    //Hide modal  
+    handleCloseModal = () => {
+        this.setState({ showModal: false });
+    }
+
     //Change color of calendar cell after click
     clicked = (event) => {
         let currentColor = event.target.getAttribute("data-color")
@@ -100,9 +117,9 @@ export default class Calendar extends Component {
 
     reset = () => {
         let currMonth = moment().month()
-        let currYear = moment().year()
-        let xxx = moment().format("MMMM YYYY")
-        this.setState({ dateObject: this.state.dateObject.month(currMonth, "MMMM YYYY"), selectedDays: [] })
+        //let currYear = moment().year()
+        //let xxx = moment().format("MMMM YYYY")
+        this.setState({ dateObject: this.state.dateObject.month(currMonth, "month"), selectedDays: [] })
         console.log(moment().year())
     }
 
@@ -209,7 +226,46 @@ export default class Calendar extends Component {
                             {daysinmonth}
                         </tbody>
                 </table>
-                <div className="calendar-navi reset" onClick={this.reset}>Reset</div>
+                <div className="btns">
+                    <div className="calendar-navi reset" onClick={this.reset}>Reset</div>
+                    <div className="pass" onClick={this.handleOpenModal}>Modify Calendar. Password required</div>
+                    <Modal 
+                        style={{
+                            overlay: 
+                            {position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            backgroundColor: 'rgba(255, 255, 255, 0.75)' }, 
+                            content: 
+                            { backgroundColor: "lightgreen", 
+                            border: "2px solid #519e8a",
+                            width:"350px",
+                            height:"200px",
+                            margin: "0 auto",
+                            top: "40%"
+                        }
+                        }}
+                        isOpen={this.state.showModal}
+                        contentLabel="Password request">           
+                        <p>Provide password</p>
+                        <input type="password"/>
+                        <button 
+                            onClick={this.handleValidation}
+                            style={{border:"3px solid #519e8a", borderRadius:"50px"}}
+                            >
+                            Enter
+                        </button>
+                        <div>
+                            <button 
+                            onClick={this.handleCloseModal} 
+                            style={{position:"absolute", top:"5px", right:"5px"}}>
+                            X
+                            </button>
+                        </div>  
+                    </Modal>
+                </div>
             </div>
         )
     }
