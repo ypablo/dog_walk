@@ -15,7 +15,8 @@ export default class Calendar extends Component {
             dateObject: moment(),
             allmonths: moment.months(),
             showModal: false,
-            disabled: false
+            disabled: false,
+            req: process.env.REACT_APP_REQ
             //selectedDay: null,
             //bgColor: true,
             //selectedDays: [],
@@ -40,7 +41,10 @@ export default class Calendar extends Component {
     
 
     handleValidation = () => {
-        alert(process.env.REACT_APP_PASS)
+        
+
+        //this.setState({ req: })
+        console.log( this.state.req)
     }
 
     //Show modal
@@ -251,8 +255,9 @@ export default class Calendar extends Component {
                         isOpen={this.state.showModal}
                         contentLabel="Password request">           
                         <p>Provide password</p>
-                        <input type="password"/>
+                        <input type="password" name="password"/>
                         <button 
+                            type="button" //onClick={this.onSubmit}
                             onClick={this.handleValidation}
                             style={{border:"3px solid #519e8a", borderRadius:"50px"}}
                             >
@@ -260,6 +265,7 @@ export default class Calendar extends Component {
                         </button>
                         <div>
                             <button 
+                            type="button"
                             onClick={this.handleCloseModal} 
                             style={{position:"absolute", top:"5px", right:"5px"}}>
                             X
