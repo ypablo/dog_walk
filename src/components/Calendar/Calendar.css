@@ -35,6 +35,7 @@
 .day:hover {
     background-color:#61ba75;
     cursor: pointer;
+    /*cursor: not-allowed;*/
 }
 .empty:hover {
     background-color:#fff;

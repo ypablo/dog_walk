@@ -14,7 +14,8 @@ export default class Calendar extends Component {
             today: moment(),
             dateObject: moment(),
             allmonths: moment.months(),
-            showModal: false
+            showModal: false,
+            disabled: false
             //selectedDay: null,
             //bgColor: true,
             //selectedDays: [],
@@ -38,8 +39,8 @@ export default class Calendar extends Component {
     }*/
     
 
-    passHandler = () => {
-        alert("Pass")
+    handleValidation = () => {
+        alert(process.env.REACT_APP_PASS)
     }
 
     //Show modal
@@ -48,7 +49,7 @@ export default class Calendar extends Component {
     }
     //Hide modal  
     handleCloseModal = () => {
-        this.setState({ showModal: false });
+        this.setState({ showModal: false, disabled: true });
     }
 
     //Change color of calendar cell after click
@@ -117,10 +118,8 @@ export default class Calendar extends Component {
 
     reset = () => {
         let currMonth = moment().month()
-        //let currYear = moment().year()
-        //let xxx = moment().format("MMMM YYYY")
         this.setState({ dateObject: this.state.dateObject.month(currMonth, "month"), selectedDays: [] })
-        console.log(moment().year())
+        //console.log(moment().year())
     }
 
 
@@ -162,7 +161,8 @@ export default class Calendar extends Component {
                 <td
                     key={d}
                     className={classNames.join(" ")}
-                    data-color="#b8e994"     
+                    data-color="#b8e994"
+                    //disabled = {(this.state.disabled)? "disabled" : ""}     
                     id={d}>
                     {d}
                 </td>
@@ -195,7 +195,8 @@ export default class Calendar extends Component {
                     key={i} 
                     //data-color="#b8e994" 
                     //ref="tester" 
-                    onClick={(e) => {this.clicked(e)}}>{d}</tr>
+                    
+                    onClick={this.state.disabled? (e) => {this.clicked(e)}: null}>{d}</tr>
         });
 
         return (
