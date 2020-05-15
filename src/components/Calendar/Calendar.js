@@ -55,10 +55,10 @@ export default class Calendar extends Component {
         const {name, req} = this.state
         let messages = []
         if (name !== req ) {
-            alert("Incorrect password")
+            alert("Incorrect password.")
             return
         } else {
-            messages.push("Correct password+")
+            messages.push("Correct password.")
             this.setState({disabled: true, showModal: false})
         }
         return messages
@@ -266,7 +266,7 @@ export default class Calendar extends Component {
                             { backgroundColor: "lightgreen", 
                             border: "2px solid #519e8a",
                             width:"350px",
-                            height:"230px",
+                            height:"200px",
                             margin: "0 auto",
                             top: "40%"
                         }
@@ -279,17 +279,22 @@ export default class Calendar extends Component {
                             <button 
                                 type="submit"
                                 name="submit"
-                                value="send" 
+                                value="send"
                                 style={{border:"3px solid #519e8a", 
                                         borderRadius:"50px", 
                                         width: "100px", 
-                                        height:"50px", 
+                                        height:"40px", 
                                         margin:"10px",
-                                        cursor: "pointer"}}
+                                        cursor: "pointer",
+                                        backgroundColor: "white",
+                                        fontSize: "18px",
+                                        textDecoration: "none",
+                                        fontWeight: "bold",
+                                        letterSpacing: "1.2px"
+                                        }}
                                 >
                                 Enter
-                            </button>
-                            <p className="pass_message">d</p>  
+                            </button> 
                             <button 
                                 type="button"
                                 onClick={this.handleCloseModal} 
