@@ -50,6 +50,7 @@ export default class Calendar extends Component {
         let messages = []
         if (name !== req ) {
             alert("Incorrect password.")
+            this.setState({showModal:false})
             return
         } else {
             messages.push("Correct password.")
