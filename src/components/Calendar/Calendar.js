@@ -17,15 +17,9 @@ export default class Calendar extends Component {
             showModal: false,
             disabled: false,
             req: process.env.REACT_APP_REQ,
-            name: ""
-
-            //selectedDay: null,
-            //bgColor: true,
-            //selectedDays: [],
-            //clicked: false,
-            //showYearTable: false,
-
-           
+            name: "",
+            border: "2px solid #519e8a",
+            opacity: 1
         }
     }
     /*
@@ -76,7 +70,6 @@ export default class Calendar extends Component {
     //Change color of calendar cell after click
     clicked = (event) => {
         let currentColor = event.target.getAttribute("data-color")
-        //let newColor = currentColor == "#FFF" ? "#e74c3c" : "#FFF"        
         let newColor
         if (currentColor == "#b8e994") {
             newColor = "#e55039"
@@ -85,7 +78,6 @@ export default class Calendar extends Component {
         } else if (currentColor == "#f6b93b") {
             newColor = "#b8e994"
         } 
-       //this.refs.tester.setAttribute("data-color", newColor) 
         event.target.setAttribute("data-color", newColor)
         event.target.style.backgroundColor = newColor;
     }
@@ -141,6 +133,15 @@ export default class Calendar extends Component {
         let currMonth = moment().month()
         this.setState({ dateObject: this.state.dateObject.month(currMonth, "month"), selectedDays: [] })
         //console.log(moment().year())
+    }
+
+    mouseEnter = () => {
+        console.log('mouse enter')
+        this.setState({opacity: 0.8, border: "2px solid #316155"})
+    }
+    mouseLeave = () => {
+        console.log('mouse leave')
+        this.setState({opacity: 1, border: "2px solid #519e8a"})
     }
 
     render() {
@@ -250,7 +251,7 @@ export default class Calendar extends Component {
                             {daysinmonth}
                         </tbody>
                 </table>
-                <div className="btns">
+                <div className="btns" >
                     <div className="calendar-navi reset" onClick={this.reset}>Reset</div>
                     <div className="pass" onClick={this.handleOpenModal}>Modify Calendar. Password required</div>
                     <Modal 
@@ -273,24 +274,32 @@ export default class Calendar extends Component {
                         }}
                         isOpen={this.state.showModal}
                         contentLabel="Password request">
-                        <form onSubmit={this.handleSubmit}>           
+                        <form onSubmit={this.handleSubmit} >           
                             <label htmlFor="message">Provide password</label>
                             <input type="password" name="name" value={this.state.name} onChange={this.handlePass}/>
                             <button 
                                 type="submit"
                                 name="submit"
                                 value="send"
-                                style={{border:"3px solid #519e8a", 
+                                
+                                onMouseEnter={this.mouseEnter}
+                                onMouseLeave={this.mouseLeave}
+                                style={{border: this.state.border, 
                                         borderRadius:"50px", 
-                                        width: "100px", 
+                                        width: "80%", 
                                         height:"40px", 
                                         margin:"10px",
                                         cursor: "pointer",
-                                        backgroundColor: "white",
+                                        backgroundColor: "#519e8a",
                                         fontSize: "18px",
+                                        color: "white",
                                         textDecoration: "none",
                                         fontWeight: "bold",
-                                        letterSpacing: "1.2px"
+                                        letterSpacing: "1.2px",
+                                        position:"absolute",
+                                        top: "100px",
+                                        right: "25px",
+                                        opacity: this.state.opacity
                                         }}
                                 >
                                 Enter
