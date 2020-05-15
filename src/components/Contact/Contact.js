@@ -52,7 +52,7 @@ export class Contact extends Component {
         } else if (comments.length < 3) {
             messages.push("Write something more :)\n")
         }
-        //if any error message ened up in message array stop function and display error message
+        //if any error message end up in message array stop function and display error message
         if (messages.length > 0) {
             e.preventDefault()
             alert(messages.join(""))

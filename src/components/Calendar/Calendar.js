@@ -16,7 +16,9 @@ export default class Calendar extends Component {
             allmonths: moment.months(),
             showModal: false,
             disabled: false,
-            req: process.env.REACT_APP_REQ
+            req: process.env.REACT_APP_REQ,
+            name: ""
+
             //selectedDay: null,
             //bgColor: true,
             //selectedDays: [],
@@ -39,12 +41,27 @@ export default class Calendar extends Component {
         )
     }*/
     
+    //handle password input 
+    handlePass = (e) => {
+        e.preventDefault();
+        this.setState({
+            name: e.target.value
+        })
+    }
 
-    handleValidation = () => {
-        
-
-        //this.setState({ req: })
-        console.log( this.state.req)
+    //handle modal form
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const {name, req} = this.state
+        let messages = []
+        if (name !== req ) {
+            alert("Incorrect password")
+            return
+        } else {
+            messages.push("Correct password+")
+            this.setState({disabled: true, showModal: false})
+        }
+        return messages
     }
 
     //Show modal
@@ -53,7 +70,7 @@ export default class Calendar extends Component {
     }
     //Hide modal  
     handleCloseModal = () => {
-        this.setState({ showModal: false, disabled: true });
+        this.setState({ showModal: false });
     }
 
     //Change color of calendar cell after click
@@ -125,7 +142,6 @@ export default class Calendar extends Component {
         this.setState({ dateObject: this.state.dateObject.month(currMonth, "month"), selectedDays: [] })
         //console.log(moment().year())
     }
-
 
     render() {
         //moment npm date/time package
@@ -203,6 +219,9 @@ export default class Calendar extends Component {
                     onClick={this.state.disabled? (e) => {this.clicked(e)}: null}>{d}</tr>
         });
 
+        
+        //console.log((e) => this.handleSubmit(e))
+
         return (
             <div className="calendar">
                 <h1 className="calendar-label">Calendar</h1>
@@ -247,30 +266,37 @@ export default class Calendar extends Component {
                             { backgroundColor: "lightgreen", 
                             border: "2px solid #519e8a",
                             width:"350px",
-                            height:"200px",
+                            height:"230px",
                             margin: "0 auto",
                             top: "40%"
                         }
                         }}
                         isOpen={this.state.showModal}
-                        contentLabel="Password request">           
-                        <p>Provide password</p>
-                        <input type="password" name="password"/>
-                        <button 
-                            type="button" //onClick={this.onSubmit}
-                            onClick={this.handleValidation}
-                            style={{border:"3px solid #519e8a", borderRadius:"50px"}}
-                            >
-                            Enter
-                        </button>
-                        <div>
+                        contentLabel="Password request">
+                        <form onSubmit={this.handleSubmit}>           
+                            <label htmlFor="message">Provide password</label>
+                            <input type="password" name="name" value={this.state.name} onChange={this.handlePass}/>
                             <button 
-                            type="button"
-                            onClick={this.handleCloseModal} 
-                            style={{position:"absolute", top:"5px", right:"5px"}}>
-                            X
+                                type="submit"
+                                name="submit"
+                                value="send" 
+                                style={{border:"3px solid #519e8a", 
+                                        borderRadius:"50px", 
+                                        width: "100px", 
+                                        height:"50px", 
+                                        margin:"10px",
+                                        cursor: "pointer"}}
+                                >
+                                Enter
                             </button>
-                        </div>  
+                            <p className="pass_message">d</p>  
+                            <button 
+                                type="button"
+                                onClick={this.handleCloseModal} 
+                                style={{position:"absolute", top:"5px", right:"5px"}}>
+                                X
+                            </button>
+                        </form>  
                     </Modal>
                 </div>
             </div>
