@@ -4,7 +4,10 @@ import Navbar from "./components/Navbar/Navbar"
 import Home from "./components/Home/Home"
 import Contact from "./components/Contact/Contact"
 import Default from "./components/Default/Default"
+import Footer from "./components/Footer/Footer"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
+
 
 export default class App extends Component {
   render() {
@@ -17,6 +20,7 @@ export default class App extends Component {
             <Route exact path="/contact" component={Contact} />
             <Route component={Default} />
           </Switch>
+          <Footer/>
         </div>
       </Router>
     )
